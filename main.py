@@ -16,15 +16,19 @@ def c2f(t):
 
 
 def logic():
+    global label_output
     for i in lb_listbox.curselection():
         choice = lb_listbox.get(i)
     temp = entry_input.get()
-    if choice == 'F2C':
-        f2c(temp)
-    elif choice == 'C2F':
-        c2f(temp)
-    else:
-        raise Exception('ERROR')
+    try:
+        if choice == 'F2C':
+            f2c(temp)
+        elif choice == 'C2F':
+            c2f(temp)
+    except UnboundLocalError:
+        label_output.configure(text='Please select either F2C or C2F...')
+    except ValueError:
+        label_output.configure(text='Please enter a number...')
 
 
 root = tk.Tk()
